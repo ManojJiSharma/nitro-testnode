@@ -296,7 +296,7 @@ if $force_init; then
     echo == create l1 traffic
     docker-compose run scripts send-l1 --ethamount 1000 --to user_l1user --wait
     docker-compose run scripts send-l1 --ethamount 0.0001 --from user_l1user --to user_l1user_b --wait --delay 500 --times 500 > /dev/null &
-
+    
     echo == Writing l2 chain config
     docker-compose run scripts write-l2-chain-config
 
@@ -331,7 +331,7 @@ if $force_init; then
 
         echo == create l2 traffic
         docker-compose run scripts send-l2 --ethamount 100 --to user_l2user --wait
-        docker-compose run scripts send-l2 --ethamount 0.0001 --from user_l2user --to user_l2user_b --wait --delay 500 --times 500 > /dev/null &
+        docker-compose run scripts send-l2 --ethamount 0.0001 --from user_l2user --to user_l2user_b --wait --delay 500 --times 1000000 > /dev/null &
 
         echo == Writing l3 chain config
         docker-compose run scripts write-l3-chain-config
@@ -351,7 +351,7 @@ if $force_init; then
 
     fi
 fi
-
+docker-compose run scripts send-l2 --ethamount 1000 --to key_0x8aab161e2a1e57367b60bd870861e3042c2513f8a856f9fee014e7b96e0a2a36 --wait
 if $run; then
     UP_FLAG=""
     if $detach; then
